@@ -9,14 +9,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t your-dockerhub-username/your-app:latest .'
-            }
-        }
-        stage('Push to DockerHub') {
-            steps {
-                withDockerRegistry([credentialsId: 'dockerhub-credentials-id']) {
-                    sh 'docker push your-dockerhub-username/your-app:latest'
-                }
+                sh 'docker build -t myusername/your-app:latest .'
             }
         }
         stage('Deploy Container') {
@@ -24,7 +17,7 @@ pipeline {
                 sh '''
                 docker stop your-app || true
                 docker rm your-app || true
-                docker run -d --name your-app -p 80:80 your-dockerhub-username/your-app:latest
+                docker run -d --name your-app -p 80:80 myusername/your-app:latest
                 '''
             }
         }
