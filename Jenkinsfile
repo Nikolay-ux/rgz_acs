@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/Nikolay-ux/rgz_acs.git'
+                git branch: 'master', url: 'https://github.com/Nikolay-ux/rgz_acs.git'
             }
         }
         stage('Build Docker Image') {
